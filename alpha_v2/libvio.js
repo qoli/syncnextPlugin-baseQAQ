@@ -125,7 +125,7 @@ function Player(inputURL) {
     html = xml.match(/r player_.*?=(.*?)</)[1];
 
     var js = JSON.parse(html);
-    //print(js);
+
     var url = js.url;
     var from = js.from;
     var next = js.link_next;
@@ -148,7 +148,6 @@ function Player(inputURL) {
             Referer: "https://www.libvio.vip/",
           },
         };
-        //print(req);
 
         $http.fetch(req).then(function (res) {
           const ifrwy = res.body;
@@ -196,10 +195,15 @@ function Player(inputURL) {
         });
       });
     } else {
+      // form 未命中的處理手段
       $http.fetch(req2).then(function (res) {
         paurl = res.body.match(/ src="(.*?)'/)[1];
         var playAPIURL =
           paurl + url + "&next=" + next + "&id=" + id + "&nid=" + nid;
+
+        if (!startsWithHttp(playAPIURL)) {
+          playAPIURL = "https://www.libvio.vip/" + playAPIURL;
+        }
 
         var req = {
           url: playAPIURL,
@@ -207,7 +211,6 @@ function Player(inputURL) {
             Referer: "https://www.libvio.vip/",
           },
         };
-        //print(req);
 
         $http.fetch(req).then(function (res) {
           var body = res.body;
@@ -271,4 +274,8 @@ function decodeStr(_0x267828) {
     _0x2191ed = _0x267828.substring(0, _0x5cd2b5),
     _0x35a256 = _0x267828.substring(_0x5cd2b5 + 7);
   return _0x2191ed + _0x35a256;
+}
+
+function startsWithHttp(str) {
+  return str.startsWith("http");
 }
