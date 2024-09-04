@@ -137,94 +137,106 @@ function Player(inputURL) {
       method: "GET",
     };
 
-    if (from === "tweb") {
-      $http.fetch(req2).then(function (res) {
-        paurl = res.body.match(/ src="(.*?)'/)[1];
-        var playAPIURL = paurl + url;
+    // print(from);
 
-        var req = {
-          url: playAPIURL,
-          headers: {
-            Referer: "https://www.libvio.vip/",
-          },
-        };
+    switch (from) {
+      case "kuake":
+        print("未能支持網盤播放，請按返回");
+        break;
 
-        $http.fetch(req).then(function (res) {
-          const ifrwy = res.body;
-          var code = ifrwy.match(/(?<={).+?(?=})/);
-          //var code = ifrwy.compile('result_v2 =(.+);')
-          code = "{" + code + "}";
+      case "ty_new1":
+        $http.fetch(req2).then(function (res) {
+          paurl = res.body.match(/ src="(.*?)'/)[1];
+          var paurl = "https://www.libvio.vip/vid/ty4.php?url=";
+          var playAPIURL = paurl + url;
 
-          code = JSON.parse(code);
-          //print(typeof (code))
+          var req = {
+            url: playAPIURL,
+            headers: {
+              Referer: "https://www.libvio.vip/",
+            },
+          };
+          //print(req);
 
-          code = code["data"];
-          //print(code)
+          $http.fetch(req).then(function (res) {
+            var body = res.body;
 
-          _0x3a1d23 = strRevers(code);
-          //print(_0x3a1d23)
-          _0x3a1d23 = htoStr(_0x3a1d23);
-          //print(_0x3a1d23)
-          $next.toPlayer(decodeStr(_0x3a1d23));
+            var url = body.match(/var .* = '(.*?)'/)[0];
+            url = url.match(/'([^']*)'/)[0];
+            //console.log(typeof (url));
+            //print(url);
+            url = url.substring(1, url.length - 1);
+            //print(url);
+            $next.toPlayer(url);
+          });
         });
-      });
-    } else if (from == "ty_new1") {
-      $http.fetch(req2).then(function (res) {
-        paurl = res.body.match(/ src="(.*?)'/)[1];
-        var paurl = "https://www.libvio.vip/vid/ty4.php?url=";
-        var playAPIURL = paurl + url;
+        break;
 
-        var req = {
-          url: playAPIURL,
-          headers: {
-            Referer: "https://www.libvio.vip/",
-          },
-        };
-        //print(req);
+      case "tweb":
+        $http.fetch(req2).then(function (res) {
+          paurl = res.body.match(/ src="(.*?)'/)[1];
+          var playAPIURL = paurl + url;
 
-        $http.fetch(req).then(function (res) {
-          var body = res.body;
+          var req = {
+            url: playAPIURL,
+            headers: {
+              Referer: "https://www.libvio.vip/",
+            },
+          };
 
-          var url = body.match(/var .* = '(.*?)'/)[0];
-          url = url.match(/'([^']*)'/)[0];
-          //console.log(typeof (url));
-          //print(url);
-          url = url.substring(1, url.length - 1);
-          //print(url);
-          $next.toPlayer(url);
+          $http.fetch(req).then(function (res) {
+            const ifrwy = res.body;
+            var code = ifrwy.match(/(?<={).+?(?=})/);
+            //var code = ifrwy.compile('result_v2 =(.+);')
+            code = "{" + code + "}";
+
+            code = JSON.parse(code);
+            //print(typeof (code))
+
+            code = code["data"];
+            //print(code)
+
+            _0x3a1d23 = strRevers(code);
+            //print(_0x3a1d23)
+            _0x3a1d23 = htoStr(_0x3a1d23);
+            //print(_0x3a1d23)
+            $next.toPlayer(decodeStr(_0x3a1d23));
+          });
         });
-      });
-    } else {
-      // form 未命中的處理手段
-      $http.fetch(req2).then(function (res) {
-        paurl = res.body.match(/ src="(.*?)'/)[1];
-        var playAPIURL =
-          paurl + url + "&next=" + next + "&id=" + id + "&nid=" + nid;
+        break;
 
-        if (!startsWithHttp(playAPIURL)) {
-          playAPIURL = "https://www.libvio.vip/" + playAPIURL;
-        }
+      default:
+        // form 未命中的處理手段
+        $http.fetch(req2).then(function (res) {
+          paurl = res.body.match(/ src="(.*?)'/)[1];
+          var playAPIURL =
+            paurl + url + "&next=" + next + "&id=" + id + "&nid=" + nid;
 
-        var req = {
-          url: playAPIURL,
-          headers: {
-            Referer: "https://www.libvio.vip/",
-          },
-        };
+          if (!startsWithHttp(playAPIURL)) {
+            playAPIURL = "https://www.libvio.vip/" + playAPIURL;
+          }
 
-        $http.fetch(req).then(function (res) {
-          var body = res.body;
+          var req = {
+            url: playAPIURL,
+            headers: {
+              Referer: "https://www.libvio.vip/",
+            },
+          };
 
-          var url = body.match(/var .* = '(.*?)'/)[0];
+          $http.fetch(req).then(function (res) {
+            var body = res.body;
 
-          url = url.match(/'([^']*)'/)[0];
-          //console.log(typeof (url));
-          //print(url);
-          url = url.substring(1, url.length - 1);
-          print(url);
-          $next.toPlayer(url);
+            var url = body.match(/var .* = '(.*?)'/)[0];
+
+            url = url.match(/'([^']*)'/)[0];
+            //console.log(typeof (url));
+            //print(url);
+            url = url.substring(1, url.length - 1);
+            print(url);
+            $next.toPlayer(url);
+          });
         });
-      });
+        break;
     }
   });
 }
