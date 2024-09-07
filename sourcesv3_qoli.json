@@ -1,46 +1,46 @@
 [
-    {
-        "id": "7144ceed-563d-4bef-9cd3-6f3d789c1a70",
-        "Top": true,
-        "note": "无广告",
-        "Search": true,
-        "title": "libvio",
-        "name": "libvio",
-        "Cover": "https://s2.loli.net/2023/12/28/KoJRfMV4DsgNTl9.png",
-        "api": "syncnextPlugin://https://raw.githubusercontent.com/Quinndark/syncnextPlugin/main/alpha_v2/libvio.json"
-    },
-    {
-        "id": "6052f8ef-c731-4ba7-a551-9b6950157fb0",
-        "Top": true,
-        "note": "在线动漫资源门户漫",
-        "Search": true,
-        "title": "anfuns",
-        "name": "anfuns",
-        "Cover": "https://bj.bcebos.com/baidu-rmb-video-cover-1/5735e9da868abdd0c0865eb3948d25e8.png",
-        "api": "syncnextPlugin://https://raw.githubusercontent.com/Quinndark/syncnextPlugin/main/alpha_v2/anfuns.json"
-    },
-    {
-        "id": "AEE28239-B325-A9A3-CBA6-733530EB4C89",
-        "Top": true,
-        "note": "grigri动漫",
-        "Search": true,
-        "name": "grigri动漫",
-        "Cover": "https://s2.loli.net/2023/12/28/HIJvdf8AlzDw1B4.png",
-        "api": "syncnextPlugin://https://raw.githubusercontent.com/Quinndark/syncnextPlugin/main/alpha_v2/grigri.json"
-    },
-    {
-        "id": "9ac32fd6-0734-468b-8afc-257b02f30bd8",
-        "Top": true,
-        "note": "1080P 3M",
-        "name": "哔嘀影视",
-        "api": "syncnextPlugin://https://raw.githubusercontent.com/icy37785/syncnextPlugin/main/alpha_v2/bdys.json"
-    },
-    {
-        "id": "18ffea3a-dfcd-4e95-bf18-f65166ffa0c6",
-        "Top": true,
-        "note": "在线观看最新美剧",
-        "name": "在线之家",
-        "Cover": "https://s2.loli.net/2023/12/28/qP7yAGswkvB2nDU.png",
-        "api": "syncnextPlugin://https://raw.githubusercontent.com/Quinndark/syncnextPlugin/main/alpha_v2/zxzj.json"
-    }
+  {
+    "id": "7144ceed-563d-4bef-9cd3-6f3d789c1a70",
+    "Top": true,
+    "note": "无广告",
+    "Search": true,
+    "title": "libvio",
+    "name": "libvio",
+    "Cover": "https://s2.loli.net/2023/12/28/KoJRfMV4DsgNTl9.png",
+    "api": "syncnextPlugin://https://raw.githubusercontent.com/qoli/syncnextPlugin-baseQAQ/main/alpha_v2/libvio.json"
+  },
+  {
+    "id": "6052f8ef-c731-4ba7-a551-9b6950157fb0",
+    "Top": true,
+    "note": "在线动漫资源门户漫",
+    "Search": true,
+    "title": "anfuns",
+    "name": "anfuns",
+    "Cover": "https://bj.bcebos.com/baidu-rmb-video-cover-1/5735e9da868abdd0c0865eb3948d25e8.png",
+    "api": "syncnextPlugin://https://raw.githubusercontent.com/qoli/syncnextPlugin-baseQAQ/main/alpha_v2/anfuns.json"
+  },
+  {
+    "id": "AEE28239-B325-A9A3-CBA6-733530EB4C89",
+    "Top": true,
+    "note": "grigri动漫",
+    "Search": true,
+    "name": "grigri动漫",
+    "Cover": "https://s2.loli.net/2023/12/28/HIJvdf8AlzDw1B4.png",
+    "api": "syncnextPlugin://https://raw.githubusercontent.com/qoli/syncnextPlugin-baseQAQ/main/alpha_v2/grigri.json"
+  },
+  {
+    "id": "9ac32fd6-0734-468b-8afc-257b02f30bd8",
+    "Top": true,
+    "note": "1080P 3M",
+    "name": "哔嘀影视",
+    "api": "syncnextPlugin://https://raw.githubusercontent.com/icy37785/syncnextPlugin/main/alpha_v2/bdys.json"
+  },
+  {
+    "id": "18ffea3a-dfcd-4e95-bf18-f65166ffa0c6",
+    "Top": true,
+    "note": "在线观看最新美剧",
+    "name": "在线之家",
+    "Cover": "https://s2.loli.net/2023/12/28/qP7yAGswkvB2nDU.png",
+    "api": "syncnextPlugin://https://raw.githubusercontent.com/qoli/syncnextPlugin-baseQAQ/main/alpha_v2/zxzj.json"
+  }
 ]
