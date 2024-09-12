@@ -48,6 +48,8 @@ function buildMedias(inputURL) {
 }
 
 function Episodes(inputURL) {
+  consoleLog(inputURL);
+
   const req = {
     url: inputURL,
     method: "GET",

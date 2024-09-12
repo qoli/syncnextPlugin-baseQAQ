@@ -6,7 +6,7 @@
     "util.js",
     "txml.js",
     "crypto-js.min.js",
-    "bdys-sign.min.js",
+    "bdys-sign.js",
     "bdys.js"
   ],
   "pages": [
