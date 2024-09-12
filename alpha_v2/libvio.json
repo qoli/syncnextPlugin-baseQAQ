@@ -2,10 +2,7 @@
   "name": "libvio",
   "description": "海量粵語節目",
   "host": "https://www.libvio.vip/",
-  "files": [
-    "txml.js",
-    "libvio.js"
-  ],
+  "files": ["txml.js", "libvio.js"],
   "pages": [
     {
       "key": "index",
@@ -53,7 +50,7 @@
     "javascript": "Player"
   },
   "search": {
-    "url": "https://www.libvio.vip/search/-------------.html?wd=${keyword}submit=",
-    "javascript": "buildMedias"
+    "url": "https://www.libvio.vip/search/-------------.html?wd=${keyword}",
+    "javascript": "Search"
   }
 }

@@ -242,7 +242,6 @@ function Player(inputURL) {
 }
 function Search(inputURL, key) {
   const req = {
-    //url: "https://www.histar.tv/_next/data/" + buildId + "/search.json?word=" + inputURL,
     url: inputURL, //直接從網頁獲取搜索結果
     method: "GET",
   };
@@ -252,17 +251,20 @@ function Search(inputURL, key) {
     let datas = [];
     for (var index = 0; index < content.length; index++) {
       var dom = content[index];
-      //print(content.length)
 
       var title = findAllByKey(dom, "title")[0];
       var href = findAllByKey(dom, "href")[0];
+      var coverURLString = findAllByKey(dom, "data-original")[0];
+      var descriptionText = "";
 
       href = buildURL(href);
 
-      datas.push(buildEpisodeData(href, title, href));
+      datas.push(
+        buildMediaData(href, coverURLString, title, descriptionText, href)
+      );
     }
 
-    $next.toSearchMedias(JSON.stringify(returnDatas), key);
+    $next.toSearchMedias(JSON.stringify(datas), key);
   });
 }
 function htoStr(_0x335e0c) {
