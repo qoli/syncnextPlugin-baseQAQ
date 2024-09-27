@@ -101,26 +101,34 @@ function Player(inputURL) {
     html = xml.match(/r player_.*?=(.*?)</)[1];
 
     var js = JSON.parse(html);
+    var jsURL = js.url;
 
-    var playerURL = "https://www.anfuns.cc/vapi/AIRA/art.php?url=" + js.url;
+    if (isHttpUrl(jsURL)) {
+      // 舊版網址格式
+      var urlEncode = base64Decode(js.url);
+      var url = decodeURIComponent(urlEncode);
+      $next.toPlayer(url);
+    } else {
+      // 新版本的 API 請求格式
+      var playerURL = "https://www.anfuns.cc/vapi/AIRA/art.php?url=" + jsURL;
+      var playerReq = {
+        url: playerURL,
+        method: "GET",
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15",
+          Referer: inputURL,
+        },
+      };
 
-    var playerReq = {
-      url: playerURL,
-      method: "GET",
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15",
-        Referer: inputURL,
-      },
-    };
+      $http.fetch(playerReq).then(function (res) {
+        var htmlContent = res.body;
+        const regex = /https?:\/\/[^\s]+\.m3u8/;
+        const matchURL = htmlContent.match(regex);
 
-    $http.fetch(playerReq).then(function (res) {
-      var htmlContent = res.body;
-      const regex = /https?:\/\/[^\s]+\.m3u8/;
-      const matchURL = htmlContent.match(regex);
-
-      $next.toPlayer(matchURL);
-    });
+        $next.toPlayer(matchURL);
+      });
+    }
   });
 }
 
@@ -165,4 +173,8 @@ function findAllByKey(obj, keyToFind) {
 }
 function print(params) {
   console.log(JSON.stringify(params));
+}
+
+function isHttpUrl(url) {
+  return url.startsWith("http://") || url.startsWith("https://");
 }
