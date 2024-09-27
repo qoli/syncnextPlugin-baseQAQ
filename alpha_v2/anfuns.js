@@ -101,9 +101,26 @@ function Player(inputURL) {
     html = xml.match(/r player_.*?=(.*?)</)[1];
 
     var js = JSON.parse(html);
-    urlEncode = base64Decode(js.url);
-    url = decodeURIComponent(urlEncode);
-    $next.toPlayer(url);
+
+    var playerURL = "https://www.anfuns.cc/vapi/AIRA/art.php?url=" + js.url;
+
+    var playerReq = {
+      url: playerURL,
+      method: "GET",
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15",
+        Referer: inputURL,
+      },
+    };
+
+    $http.fetch(playerReq).then(function (res) {
+      var htmlContent = res.body;
+      const regex = /https?:\/\/[^\s]+\.m3u8/;
+      const matchURL = htmlContent.match(regex);
+
+      $next.toPlayer(matchURL);
+    });
   });
 }
 
