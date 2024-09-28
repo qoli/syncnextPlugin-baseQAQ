@@ -2,7 +2,7 @@
 
 function buildURL(href) {
   if (!href.startsWith("http")) {
-    href = "https://www.yjys02.com" + href;
+    href = "https://www.yjys05.com" + href;
   }
   return href;
 }
