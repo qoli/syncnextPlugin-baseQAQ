@@ -28,16 +28,7 @@
     "Cover": "https://s2.loli.net/2023/12/28/HIJvdf8AlzDw1B4.png",
     "api": "syncnextPlugin://https://raw.githubusercontent.com/qoli/syncnextPlugin-baseQAQ/main/alpha_v2/grigri.json"
   },
-  ,
-  {
-    "id": "AEE28239-B325-A9A3-CBA6-733530EB4C80",
-    "Top": true,
-    "note": "咕咕番",
-    "Search": true,
-    "name": "咕咕番",
-    "Cover": "https://s2.loli.net/2023/12/28/HIJvdf8AlzDw1B4.png",
-    "api": "syncnextPlugin://https://raw.githubusercontent.com/qoli/syncnextPlugin-baseQAQ/main/alpha_v2/gugufan.json"
-  },
+
   {
     "id": "9ac32fd6-0734-468b-8afc-257b02f30bd8",
     "Top": true,
