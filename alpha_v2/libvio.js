@@ -225,15 +225,25 @@ function Player(inputURL) {
 
           $http.fetch(req).then(function (res) {
             var body = res.body;
-
             var url = body.match(/var .* = '(.*?)'/)[0];
-
             url = url.match(/'([^']*)'/)[0];
-            //console.log(typeof (url));
-            //print(url);
             url = url.substring(1, url.length - 1);
-            print(url);
-            $next.toPlayer(url);
+
+            try {
+              let json = {
+                url: url,
+                headers: {
+                  "User-Agent":
+                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1 Safari/605.1.15",
+                  Referer: "https://www.libvio.vip/",
+                },
+              };
+
+              $next.toPlayerByJSON(JSON.stringify(json));
+            } catch (error) {
+              print("請 Syncext 更新到 1.116 或以上版本");
+              $next.toPlayer(url);
+            }
           });
         });
         break;
