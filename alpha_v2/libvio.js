@@ -156,18 +156,15 @@ function Player(inputURL) {
               Referer: "https://www.libvio.vip/",
             },
           };
-          //print(req);
 
           $http.fetch(req).then(function (res) {
             var body = res.body;
 
             var url = body.match(/var .* = '(.*?)'/)[0];
             url = url.match(/'([^']*)'/)[0];
-            //console.log(typeof (url));
-            //print(url);
             url = url.substring(1, url.length - 1);
-            //print(url);
-            $next.toPlayer(url);
+
+            gotoPlay(url);
           });
         });
         break;
@@ -187,20 +184,18 @@ function Player(inputURL) {
           $http.fetch(req).then(function (res) {
             const ifrwy = res.body;
             var code = ifrwy.match(/(?<={).+?(?=})/);
-            //var code = ifrwy.compile('result_v2 =(.+);')
+
             code = "{" + code + "}";
 
             code = JSON.parse(code);
-            //print(typeof (code))
 
             code = code["data"];
-            //print(code)
 
             _0x3a1d23 = strRevers(code);
-            //print(_0x3a1d23)
+
             _0x3a1d23 = htoStr(_0x3a1d23);
-            //print(_0x3a1d23)
-            $next.toPlayer(decodeStr(_0x3a1d23));
+
+            gotoPlay(decodeStr(_0x3a1d23));
           });
         });
         break;
@@ -229,27 +224,32 @@ function Player(inputURL) {
             url = url.match(/'([^']*)'/)[0];
             url = url.substring(1, url.length - 1);
 
-            try {
-              let json = {
-                url: url,
-                headers: {
-                  "User-Agent":
-                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1 Safari/605.1.15",
-                  Referer: "https://www.libvio.vip/",
-                },
-              };
-
-              $next.toPlayerByJSON(JSON.stringify(json));
-            } catch (error) {
-              print("請 Syncext 更新到 1.116 或以上版本");
-              $next.toPlayer(url);
-            }
+            gotoPlay(url);
           });
         });
         break;
     }
   });
 }
+
+function gotoPlay(url) {
+  try {
+    let json = {
+      url: url,
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1 Safari/605.1.15",
+        Referer: "https://www.libvio.vip/",
+      },
+    };
+
+    $next.toPlayerByJSON(JSON.stringify(json));
+  } catch (error) {
+    print("請 Syncnext 更新到 1.116 或以上版本");
+    $next.toPlayer(url);
+  }
+}
+
 function Search(inputURL, key) {
   const req = {
     url: inputURL, //直接從網頁獲取搜索結果
