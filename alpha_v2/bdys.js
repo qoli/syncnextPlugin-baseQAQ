@@ -2,7 +2,7 @@
 
 function buildURL(href) {
   if (!href.startsWith("http")) {
-    href = "https://www.yjys05.com" + href;
+    href = "https://www.xlys01.com" + href;
   }
   return href;
 }
@@ -25,11 +25,11 @@ function buildMedias(inputURL) {
       _len = dom.children.length;
 
       let href = findAllByKey(dom, "href")[0];
-      // print(href);
+
       const title = dom.children[_len - 1].children[0].children[0];
-      // print(title);
+
       const coverURLString = findAllByKey(dom, "src")[0];
-      // print(coverURLString);
+
       let descriptionText = dom.children[_len - 1].children[1].children[0];
       /* 不知道為什麽本地node環境可以正常輸出，但是在插件里會報錯，後續找到原因再調試。
             const _array = dom.children[_len-2].children[1] || dom.children[_len-1].children[1];
@@ -48,7 +48,7 @@ function buildMedias(inputURL) {
 }
 
 function Episodes(inputURL) {
-  consoleLog(inputURL);
+  // consoleLog(inputURL);
 
   const req = {
     url: inputURL,

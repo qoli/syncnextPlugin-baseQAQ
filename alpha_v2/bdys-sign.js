@@ -10,7 +10,7 @@ function get_url(pid) {
   });
   const sign = encryptedData.ciphertext.toString().toUpperCase();
   return (
-    "https://www.yjys05.com/lines" +
+    "https://www.xlys01.com/lines" +
     "?t=" +
     time +
     "&sg=" +
@@ -43,7 +43,7 @@ function Player(inputURL) {
 
   $http.fetch(req).then((res) => {
     const pid = res.body.match(/pid = (\d+);/)[1];
-    //print(get_url(pid));
+
     req = {
       url: get_url(pid),
       method: "GET",
@@ -51,9 +51,9 @@ function Player(inputURL) {
 
     $http.fetch(req).then((res) => {
       let _url = JSON.parse(res.body).data.url3;
-      if (_url.indexOf("www.yjys05.com") != -1) {
+      if (_url.indexOf("www.xlys01.com") != -1) {
         req = {
-          url: "https://www.yjys05.com/god/" + pid + "?type=1",
+          url: "https://www.xlys01.com/god/" + pid + "?type=1",
           method: "POST",
           body: get_body(pid),
           headers: {
@@ -62,6 +62,7 @@ function Player(inputURL) {
         };
         $http.fetch(req).then((res) => {
           const _url = JSON.parse(res.body).url;
+
           $next.toPlayer(_url);
         });
       } else {
