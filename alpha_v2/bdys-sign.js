@@ -10,7 +10,7 @@ function get_url(pid) {
   });
   const sign = encryptedData.ciphertext.toString().toUpperCase();
   return (
-    "https://www.xlys01.com/lines" +
+    "https://xl01.com.de/lines" +
     "?t=" +
     time +
     "&sg=" +
@@ -50,24 +50,34 @@ function Player(inputURL) {
     };
 
     $http.fetch(req).then((res) => {
-      let _url = JSON.parse(res.body).data.url3;
-      if (_url.indexOf("www.xlys01.com") != -1) {
-        req = {
-          url: "https://www.xlys01.com/god/" + pid + "?type=1",
-          method: "POST",
-          body: get_body(pid),
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        };
-        $http.fetch(req).then((res) => {
-          const _url = JSON.parse(res.body).url;
 
-          $next.toPlayer(_url);
-        });
-      } else {
-        $next.toPlayer(_url);
+
+
+      let _url = JSON.parse(res.body).data.m3u8;
+
+      if (_url == "") {
+        print("URL 取回失敗")
+        return
       }
+
+      $next.toPlayer(_url);
+
+      // if (_url.indexOf("www.xlys01.com") != -1) {
+      //   req = {
+      //     url: "https://xl01.com.de/god/" + pid + "?type=1",
+      //     method: "POST",
+      //     body: get_body(pid),
+      //     headers: {
+      //       "Content-Type": "application/x-www-form-urlencoded",
+      //     },
+      //   };
+      //   $http.fetch(req).then((res) => {
+      //     const _url = JSON.parse(res.body).url;
+      //     $next.toPlayer(_url);
+      //   });
+      // } else {
+        
+      // }
     });
   });
 }
