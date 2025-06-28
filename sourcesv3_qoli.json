@@ -10,16 +10,6 @@
     "api": "syncnextPlugin://https://raw.githubusercontent.com/qoli/syncnextPlugin-baseQAQ/main/alpha_v2/libvio.json"
   },
   {
-    "id": "6052f8ef-c731-4ba7-a551-9b6950157fb0",
-    "Top": true,
-    "note": "在线动漫资源门户漫",
-    "Search": true,
-    "title": "anfuns",
-    "name": "anfuns",
-    "Cover": "https://bj.bcebos.com/baidu-rmb-video-cover-1/5735e9da868abdd0c0865eb3948d25e8.png",
-    "api": "syncnextPlugin://https://raw.githubusercontent.com/qoli/syncnextPlugin-baseQAQ/main/alpha_v2/anfuns.json"
-  },
-  {
     "id": "9ac32fd6-0734-468b-8afc-257b02f30bd8",
     "Top": true,
     "note": "1080P",
