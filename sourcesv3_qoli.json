@@ -20,6 +20,13 @@
     "api": "syncnextPlugin://https://raw.githubusercontent.com/qoli/syncnextPlugin-baseQAQ/main/alpha_v2/anfuns.json"
   },
   {
+    "id": "9ac32fd6-0734-468b-8afc-257b02f30bd8",
+    "Top": true,
+    "note": "1080P",
+    "name": "修罗影视",
+    "api": "syncnextPlugin://https://raw.githubusercontent.com/qoli/syncnextPlugin-baseQAQ/main/alpha_v2/bdys.json"
+  },
+  {
     "id": "AEE28239-B325-A9A3-CBA6-733530EB4C89",
     "Top": true,
     "note": "grigri 动漫",

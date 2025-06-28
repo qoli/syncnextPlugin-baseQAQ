@@ -76,4 +76,4 @@ function Episodes(inputURL) {
   });
 }
 
-function Search(inputURL) {}
+function Search(inputURL) { }
