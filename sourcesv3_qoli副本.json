@@ -34,5 +34,13 @@
     "name": "grigri 动漫",
     "Cover": "https://s2.loli.net/2023/12/28/HIJvdf8AlzDw1B4.png",
     "api": "syncnextPlugin://https://raw.githubusercontent.com/qoli/syncnextPlugin-baseQAQ/main/alpha_v2/grigri.json"
+  },
+  {
+    "id": "18ffea3a-dfcd-4e95-bf18-f65166ffa0c6",
+    "Top": true,
+    "note": "在线观看最新美剧",
+    "name": "在线之家",
+    "Cover": "https://s2.loli.net/2023/12/28/qP7yAGswkvB2nDU.png",
+    "api": "syncnextPlugin://https://raw.githubusercontent.com/qoli/syncnextPlugin-baseQAQ/main/alpha_v2/zxzj.json"
   }
 ]
