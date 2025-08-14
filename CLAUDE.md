@@ -8,8 +8,8 @@ This is a personal collection of SyncNext plugins for streaming video content. T
 
 ## Development Commands
 
-- `npm test` - Runs the test suite using node_Test.js
-- `npm install` - Installs dependencies (crypto-js, node-fetch, txml)
+- `npm install` - Installs dependencies (crypto-js, node-fetch, txml, ws)
+- `npm test` - Runs the test suite (Note: test file may not exist yet)
 
 ## Architecture
 
@@ -45,11 +45,24 @@ Each plugin JavaScript file follows a standard structure:
 - **crypto-js**: Cryptographic functions for authentication/signing
 - **node-fetch**: HTTP client for API requests  
 - **txml**: Lightweight XML/HTML parser
+- **ws**: WebSocket client library
+
+## MoonTV Subproject
+
+The repository contains a separate MoonTV Next.js application in the `/MoonTV/` directory:
+- Built with Next.js, TypeScript, and Tailwind CSS
+- Uses Cloudflare D1 database for data persistence
+- Includes authentication, favorites, play records, and Douban integration
+- Separate build system with its own package.json and dependencies
+- Development commands specific to MoonTV are in its directory
 
 ## Plugin Development Notes
 
 - All plugins use the SyncNext plugin protocol (`syncnextPlugin://`)
-- JavaScript files should use backtick-quoted `user script` declaration
-- HTML parsing relies on className-based element selection
-- URL building should handle both relative and absolute paths
-- Plugin metadata must match between .json config and .js implementation files
+- JavaScript files must start with `user script` declaration in backticks
+- Plugin functions follow standard pattern: `buildMedias()`, `Episodes()`, `buildURL()`
+- Uses `$http.fetch()` for HTTP requests and `$next.toMedias()` for callbacks
+- HTML parsing relies on className-based element selection and tXml parser
+- URL building should handle both relative and absolute paths with `buildURL()` helper
+- Plugin metadata in .json files must match .js implementation files exactly
+- Recent plugins (like moontv.js) implement API-based data fetching rather than HTML scraping
