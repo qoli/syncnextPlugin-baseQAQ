@@ -28,10 +28,10 @@
   {
     "id": "F7A8B9C1-D2E3-4F56-7890-123456789ABC",
     "Top": true,
-    "note": "優質影視資源",
+    "note": "基於 API 監控重新開發",
     "Search": true,
     "name": "MoonTV",
-    "Cover": "https://s2.loli.net/2023/12/28/MoonTVCoverImage.png",
-    "api": "syncnextPlugin://https://raw.githubusercontent.com/icy37785/syncnextPlugin/main/alpha_v2/moontv.json"
+    "Cover": "https://img.picbf.com/upload/vod/20250705-1/2dc924dc5f3ca109fdfac418307d29ea.jpg",
+    "api": "syncnextPlugin://https://raw.githubusercontent.com/qoli/syncnextPluginQAQ/main/alpha_v2/moontv.json"
   }
 ]

@@ -1,7 +1,9 @@
+訪問網址  掌握所有 API 請求
+
 curl 'https://moon-eeaqvx9a9-qoli-wongs-projects.vercel.app/api/search?q=%E6%AD%A3%E4%B9%89%E8%BF%87%E5%AE%A2' \
 -X 'GET' \
 -H 'Referer: https://moon-eeaqvx9a9-qoli-wongs-projects.vercel.app/play?title=%E6%AD%A3%E4%B9%89%E8%BF%87%E5%AE%A2&year=2025&stype=movie' \
--H 'Accept: */*' \
+-H 'Accept: */*' \d
 -H 'Sec-Fetch-Dest: empty' \
 -H 'Sec-Fetch-Mode: cors' \
 -H 'Sec-Fetch-Site: same-origin' \
