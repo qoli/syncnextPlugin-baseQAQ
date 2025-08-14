@@ -113,20 +113,7 @@ function buildDoubanMedias(inputURL) {
 }
 
 function Episodes(inputURL) {
-  const episode = buildEpisodeData(
-    inputURL,
-    "播放",
-    inputURL
-  );
-
-  $next.toEpisodes(JSON.stringify([episode]));
-}
-
-function Player(inputURL) {
-  // 1. input URL
-  // print("Player inputURL: " + inputURL);
-
-  // 2. 抽取標題
+  // 1. 抽取標題參數
   function getQueryParam(url, param) {
     const regex = new RegExp('[?&]' + param + '=([^&#]*)', 'i');
     const match = regex.exec(url);
@@ -135,11 +122,11 @@ function Player(inputURL) {
 
   const title = getQueryParam(inputURL, 'title');
   if (!title) {
-    print("Player error: 缺少標題參數");
+    print("Episodes error: 缺少標題參數");
     return;
   }
 
-  // 3. 請求 Search
+  // 2. 請求搜索 API
   const searchURL = `https://moon-tv-seven-beta-58.vercel.app/api/search?q=${encodeURIComponent(title)}`;
 
   const req = {
@@ -157,11 +144,9 @@ function Player(inputURL) {
   $http.fetch(req).then((res) => {
     const data = JSON.parse(res.body);
 
-    // 4. 準備一個空數組
+    // 3. 找到標題完全匹配的結果
     let matchedResults = [];
-
     if (data.results && data.results.length > 0) {
-      // 5. 對 Title 進行完全匹配 title == "全知读者视角"，匹配成功的追加到數組
       for (let i = 0; i < data.results.length; i++) {
         if (data.results[i].title === title) {
           matchedResults.push(data.results[i]);
@@ -169,41 +154,60 @@ function Player(inputURL) {
       }
     }
 
-    // 構建播放候選項
-    let candidates = [];
+    if (matchedResults.length === 0) {
+      print("Episodes error: 未找到匹配的內容");
+      $next.toEpisodes("[]");
+      return;
+    }
+
+    // 4. 統計劇集數量，找出最常見的數量作為完整內容
+    let episodeCountMap = {};
     matchedResults.forEach(result => {
-      if (result.episodes && result.episodes.length > 0) {
-        result.episodes.forEach((episodeUrl, index) => {
-          // 確保是有效的 M3U8 鏈接
-          // if (episodeUrl && typeof episodeUrl === 'string' && episodeUrl.includes('.m3u8')) {
-          candidates.push({
-            url: episodeUrl,
-            headers: {
-              'Referer': 'https://moon-tv-seven-beta-58.vercel.app/',
-              'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:140.0) Gecko/20100101 Firefox/140.0',
-              'Origin': 'https://moon-tv-seven-beta-58.vercel.app'
-            },
-            quality: result.source_name || result.source || 'Unknown',
-            title: `${result.source_name || result.source}${result.episodes.length > 1 ? ` - 第${index + 1}集` : ''}`
-          });
-          // }
-        });
-      }
+      const count = result.episodes ? result.episodes.length : 0;
+      episodeCountMap[count] = (episodeCountMap[count] || 0) + 1;
     });
 
-    // 6. 格式化 json 發送到 toPlayerCandidates
-    const json = JSON.stringify(candidates);
-    // print("Player candidates JSON: " + json);
-
-    if (candidates.length > 0) {
-      $next.toPlayerCandidates(json);
-    } else {
-      print("Player error: 沒有找到可用的播放源");
+    // 找出出現最多次的劇集數量
+    let maxCount = 0;
+    let mostCommonEpisodeCount = 0;
+    for (const [count, frequency] of Object.entries(episodeCountMap)) {
+      if (frequency > maxCount) {
+        maxCount = frequency;
+        mostCommonEpisodeCount = parseInt(count);
+      }
     }
+
+    // 5. 只保留劇集數量等於最常見數量的結果
+    const validResults = matchedResults.filter(result => 
+      result.episodes && result.episodes.length === mostCommonEpisodeCount
+    );
+
+    // 6. 構建 toEpisodesCandidates 格式
+    const candidatesData = validResults.map(result => {
+      const episodes = result.episodes.map((episodeUrl, index) => ({
+        id: `${result.source}_ep${index + 1}`,
+        title: `第 ${index + 1} 集`,
+        episodeDetailURL: episodeUrl
+      }));
+
+      return {
+        source: result.source_name || result.source || 'Unknown',
+        episodes: episodes
+      };
+    });
+
+    // 7. 調用 toEpisodesCandidates
+    $next.toEpisodesCandidates(JSON.stringify(candidatesData));
   }).catch((error) => {
-    print("Error in Player: " + error);
-    print("Player error: 獲取播放源失敗");
+    print("Error in Episodes: " + error);
+    $next.toEpisodes("[]");
   });
+}
+
+function Player(inputURL) {
+  // 使用 toEpisodesCandidates 後，Player 函數直接接收播放 URL
+  // 直接轉發播放 URL 到播放器
+  $next.toPlayer(inputURL);
 }
 
 function buildMedias(inputURL) {

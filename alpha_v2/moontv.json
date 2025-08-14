@@ -17,6 +17,20 @@
       "url": "movie-热门-全部-${pageNumber}",
       "timeout": 60,
       "javascript": "buildDoubanMedias"
+    },
+    {
+      "key": "tv-index",
+      "title": "最新電視劇",
+      "url": "tv-tv-tv-${pageNumber}",
+      "timeout": 60,
+      "javascript": "buildDoubanMedias"
+    },
+    {
+      "key": "variety-show",
+      "title": "綜藝節目",
+      "url": "tv-show-show-${pageNumber}",
+      "timeout": 60,
+      "javascript": "buildDoubanMedias"
     }
   ],
   "episodes": {
