@@ -1,0 +1,54 @@
+{
+  "name": "MoonTV",
+  "description": "月亮影視 - 優質影視資源",
+  "host": "https://moontv.example.com",
+  "files": ["util.js", "txml.js", "moontv.js"],
+  "pages": [
+    {
+      "key": "index",
+      "title": "最近更新",
+      "url": "https://moontv.example.com/recent/${pageNumber}",
+      "javascript": "buildMedias"
+    },
+    {
+      "key": "movie",
+      "title": "電影",
+      "url": "https://moontv.example.com/movie/${pageNumber}",
+      "javascript": "buildMedias"
+    },
+    {
+      "key": "tv",
+      "title": "電視劇",
+      "url": "https://moontv.example.com/tv/${pageNumber}",
+      "javascript": "buildMedias"
+    },
+    {
+      "key": "anime",
+      "title": "動漫",
+      "url": "https://moontv.example.com/anime/${pageNumber}",
+      "javascript": "buildMedias"
+    },
+    {
+      "key": "variety",
+      "title": "綜藝",
+      "url": "https://moontv.example.com/variety/${pageNumber}",
+      "javascript": "buildMedias"
+    },
+    {
+      "key": "documentary",
+      "title": "紀錄片",
+      "url": "https://moontv.example.com/documentary/${pageNumber}",
+      "javascript": "buildMedias"
+    }
+  ],
+  "episodes": {
+    "javascript": "Episodes"
+  },
+  "player": {
+    "javascript": "Player"
+  },
+  "search": {
+    "url": "https://moontv.example.com/search?q=${keyword}",
+    "javascript": "Search"
+  }
+}

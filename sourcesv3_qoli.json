@@ -24,5 +24,14 @@
     "name": "grigri 动漫",
     "Cover": "https://s2.loli.net/2023/12/28/HIJvdf8AlzDw1B4.png",
     "api": "syncnextPlugin://https://raw.githubusercontent.com/qoli/syncnextPlugin-baseQAQ/main/alpha_v2/grigri.json"
+  },
+  {
+    "id": "F7A8B9C1-D2E3-4F56-7890-123456789ABC",
+    "Top": true,
+    "note": "優質影視資源",
+    "Search": true,
+    "name": "MoonTV",
+    "Cover": "https://s2.loli.net/2023/12/28/MoonTVCoverImage.png",
+    "api": "syncnextPlugin://https://raw.githubusercontent.com/icy37785/syncnextPlugin/main/alpha_v2/moontv.json"
   }
 ]
