@@ -1,0 +1,35 @@
+{
+  "name": "MoonTV",
+  "description": "月亮影視 - 優質影視資源",
+  "host": "https://moon-tv-seven-beta-58.vercel.app",
+  "files": ["txml.js", "moontv.js"],
+  "pages": [
+    {
+      "key": "index",
+      "title": "最新電影",
+      "url": "movie-最新-全部-${pageNumber}",
+      "timeout": 60,
+      "javascript": "buildDoubanMedias"
+    },
+    {
+      "key": "hot-movie", 
+      "title": "熱門電影",
+      "url": "movie-热门-全部-${pageNumber}",
+      "timeout": 60,
+      "javascript": "buildDoubanMedias"
+    }
+  ],
+  "episodes": {
+    "timeout": 60,
+    "javascript": "Episodes"
+  },
+  "player": {
+    "timeout": 60,
+    "javascript": "Player"
+  },
+  "search": {
+    "url": "https://moon-tv-seven-beta-58.vercel.app/api/search?q=${keyword}",
+    "timeout": 60,
+    "javascript": "Search"
+  }
+}
