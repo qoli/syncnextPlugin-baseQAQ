@@ -32,6 +32,6 @@
     "Search": true,
     "name": "MoonTV",
     "Cover": "https://img.picbf.com/upload/vod/20250705-1/2dc924dc5f3ca109fdfac418307d29ea.jpg",
-    "api": "syncnextPlugin://https://raw.githubusercontent.com/qoli/syncnextPluginQAQ/main/alpha_v2/moontv.json"
+    "api": "syncnextPlugin://https://raw.githubusercontent.com/qoli/syncnextPlugin-baseQAQ/main/alpha_v2/moontv.json"
   }
 ]
