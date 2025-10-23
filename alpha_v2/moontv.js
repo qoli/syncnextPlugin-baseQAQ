@@ -112,19 +112,39 @@ function buildDoubanMedias(inputURL) {
   });
 }
 
+// 抽取標題參數
+function getQueryParam(url, param) {
+  const regex = new RegExp('[?&]' + param + '=([^&#]*)', 'i');
+  const match = regex.exec(url);
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
 function Episodes(inputURL) {
-  // 1. 抽取標題參數
-  function getQueryParam(url, param) {
-    const regex = new RegExp('[?&]' + param + '=([^&#]*)', 'i');
-    const match = regex.exec(url);
-    return match ? decodeURIComponent(match[1]) : null;
-  }
+
+  
+
+  const year = getQueryParam(inputURL,'year')
+  const normalizeYear = (value) => {
+    if (value === undefined || value === null) {
+      return "";
+    }
+    const str = String(value).trim();
+    if (!str || str.toLowerCase() === "null" || str.toLowerCase() === "undefined") {
+      return "";
+    }
+    const match = str.match(/\d{4}/);
+    return match ? match[0] : "";
+  };
+  const targetYear = normalizeYear(year);
 
   const title = getQueryParam(inputURL, 'title');
   if (!title) {
     print("Episodes error: 缺少標題參數");
     return;
   }
+
+  print(targetYear)
+  print(title)
 
   // 2. 請求搜索 API
   const searchURL = `https://moon-tv-seven-beta-58.vercel.app/api/search?q=${encodeURIComponent(title)}`;
@@ -148,8 +168,12 @@ function Episodes(inputURL) {
     let matchedResults = [];
     if (data.results && data.results.length > 0) {
       for (let i = 0; i < data.results.length; i++) {
-        if (data.results[i].title === title) {
-          matchedResults.push(data.results[i]);
+        // 追加匹配邏輯，讓年份相同的內容進行匹配
+        const result = data.results[i];
+        const resultYear = normalizeYear(result.year);
+        const isYearMatched = !targetYear || (resultYear && resultYear === targetYear);
+        if (result.title === title && isYearMatched) {
+          matchedResults.push(result);
         }
       }
     }
@@ -178,7 +202,7 @@ function Episodes(inputURL) {
     }
 
     // 5. 只保留劇集數量等於最常見數量的結果
-    const validResults = matchedResults.filter(result => 
+    const validResults = matchedResults.filter(result =>
       result.episodes && result.episodes.length === mostCommonEpisodeCount
     );
 
