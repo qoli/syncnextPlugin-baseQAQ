@@ -121,9 +121,9 @@ function getQueryParam(url, param) {
 
 function Episodes(inputURL) {
 
-  
 
-  const year = getQueryParam(inputURL,'year')
+
+  const year = getQueryParam(inputURL, 'year')
   const normalizeYear = (value) => {
     if (value === undefined || value === null) {
       return "";
