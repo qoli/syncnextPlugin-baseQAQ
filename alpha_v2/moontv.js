@@ -140,9 +140,6 @@ function Episodes(inputURL) {
     return;
   }
 
-  print(targetYear)
-  print(title)
-
   // 2. 請求搜索 API
   const searchURL = `https://moon-tv-seven-beta-58.vercel.app/api/search?q=${encodeURIComponent(title)}`;
 
