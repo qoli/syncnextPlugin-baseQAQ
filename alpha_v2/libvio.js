@@ -1,5 +1,8 @@
 `user script`;
 
+var BASE_URL = "https://libvio.site";
+var REFERER_URL = BASE_URL + "/";
+
 function print(params) {
   console.log(JSON.stringify(params));
 }
@@ -32,9 +35,16 @@ function buildEpisodeData(id, title, episodeDetailURL) {
 
 function buildURL(href) {
   if (!href.startsWith("http")) {
-    href = "https://www.libvio.cc" + href;
+    href = BASE_URL + href;
   }
   return href;
+}
+
+function buildAbsoluteURL(url) {
+  if (!startsWithHttp(url)) {
+    return BASE_URL + "/" + url.replace(/^\/+/, "");
+  }
+  return url;
 }
 
 function findAllByKey(obj, keyToFind) {
@@ -131,9 +141,9 @@ function Player(inputURL) {
     var next = js.link_next;
     var id = js.id;
     var nid = js.nid;
-    var paurl = "https://www.libvio.cc/vid/ty3.php?url=";
+    var paurl = BASE_URL + "/vid/ty3.php?url=";
     var req2 = {
-      url: "https://www.libvio.cc" + "/static/player/" + from + ".js",
+      url: BASE_URL + "/static/player/" + from + ".js",
       method: "GET",
     };
 
@@ -147,13 +157,13 @@ function Player(inputURL) {
       case "ty_new1":
         $http.fetch(req2).then(function (res) {
           paurl = res.body.match(/ src="(.*?)'/)[1];
-          var paurl = "https://www.libvio.cc/vid/ty4.php?url=";
+          var paurl = BASE_URL + "/vid/ty4.php?url=";
           var playAPIURL = paurl + url;
 
           var req = {
             url: playAPIURL,
             headers: {
-              Referer: "https://www.libvio.cc/",
+              Referer: REFERER_URL,
             },
           };
 
@@ -177,7 +187,7 @@ function Player(inputURL) {
           var req = {
             url: playAPIURL,
             headers: {
-              Referer: "https://www.libvio.cc/",
+              Referer: REFERER_URL,
             },
           };
 
@@ -207,14 +217,12 @@ function Player(inputURL) {
           var playAPIURL =
             paurl + url + "&next=" + next + "&id=" + id + "&nid=" + nid;
 
-          if (!startsWithHttp(playAPIURL)) {
-            playAPIURL = "https://www.libvio.cc/" + playAPIURL;
-          }
+          playAPIURL = buildAbsoluteURL(playAPIURL);
 
           var req = {
             url: playAPIURL,
             headers: {
-              Referer: "https://www.libvio.cc/",
+              Referer: REFERER_URL,
             },
           };
 
@@ -239,7 +247,7 @@ function gotoPlay(url) {
       headers: {
         "User-Agent":
           "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1 Safari/605.1.15",
-        Referer: "https://www.libvio.cc/",
+        Referer: REFERER_URL,
       },
     };
 
