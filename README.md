@@ -13,7 +13,7 @@
 | 插件 | 檔名 | 站點 |
 | --- | --- | --- |
 | anfuns | `anfuns.json` | https://anfuns.cc |
-| 修罗影视 | `bdys.json` | https://xl01.com.de/ |
+| 修罗影视 | `bdys.json` | https://www.xlys02.com/ |
 | grigrilove | `grigri.json` | https://bgm.girigirilove.com |
 | 咕咕番 | `gugufan.json` | https://www.gugufan.com |
 | 星视界 | `histar.json` | https://www.histar.tv |
