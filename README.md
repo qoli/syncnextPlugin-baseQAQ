@@ -14,7 +14,6 @@
 | --- | --- | --- |
 | anfuns | `anfuns.json` | https://anfuns.cc |
 | 修罗影视 | `bdys.json` | https://www.xlys02.com/ |
-| grigrilove | `grigri.json` | https://bgm.girigirilove.com |
 | 咕咕番 | `gugufan.json` | https://www.gugufan.com |
 | 星视界 | `histar.json` | https://www.histar.tv |
 | 在线之家 | `jojo.json` | https://jiohub.top |
